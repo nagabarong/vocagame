@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_Show password</name>
+   <tag></tag>
+   <elementGuidId>377aa07f-5e04-4c8e-b6b0-953c66c5ec19</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//button[@type='button']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>fb80f643-ce3e-45c0-bd7f-bb6d0b21d018</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>inline-flex items-center font-bold justify-center whitespace-nowrap text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground rounded-lg absolute right-0 top-0 z-30 h-full px-3 py-2 hover:bg-transparent</value>
+      <webElementGuid>497aeb35-c905-4cac-9579-6f35250c1c9e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>type</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>6f754f1f-afbf-4edc-a15f-d8e0db659b28</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Show password</value>
+      <webElementGuid>af4609c0-3114-47b7-9455-70927a051283</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;__className_646807&quot;]/main[@class=&quot;relative h-full w-full&quot;]/section[@class=&quot;bg-gradient-auth relative min-h-screen justify-center overflow-x-hidden bg-[#f1f1f1] sm:flex sm:items-center sm:bg-cover sm:bg-center sm:bg-no-repeat md:overflow-hidden&quot;]/div[@class=&quot;mx-4 my-6 flex max-w-[902px] -translate-y-32 flex-col-reverse overflow-hidden rounded-2xl lg:container sm:min-h-[700px] sm:translate-y-0 sm:bg-white lg:mx-0 lg:flex-row&quot;]/div[@class=&quot;h-full w-full sm:p-6 lg:w-1/2&quot;]/div[@class=&quot;hidden sm:block&quot;]/form[@class=&quot;mt-6 space-y-4&quot;]/div[@class=&quot;relative space-y-2 pt-4&quot;]/div[@class=&quot;relative&quot;]/div[@class=&quot;relative&quot;]/div[@class=&quot;w-full&quot;]/div[@class=&quot;relative w-full&quot;]/button[@class=&quot;inline-flex items-center font-bold justify-center whitespace-nowrap text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground rounded-lg absolute right-0 top-0 z-30 h-full px-3 py-2 hover:bg-transparent&quot;]</value>
+      <webElementGuid>6bef37bf-9a08-40ed-890d-a2e9a892a66f</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//button[@type='button']</value>
+      <webElementGuid>8d2124a1-c439-434f-b9c7-70c36165cec6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='*'])[1]/preceding::button[1]</value>
+      <webElementGuid>89c74f17-ce5a-4fad-aef7-8c9db2f4e964</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//button</value>
+      <webElementGuid>ec3bd29f-b75a-4a89-9821-aab1e1b38418</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[@type = 'button' and (text() = 'Show password' or . = 'Show password')]</value>
+      <webElementGuid>3bda5902-f78c-4b32-b2cf-0a550dd13d31</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
