@@ -13,5 +13,13 @@ Feature: Login to VocaGame
     Examples:
       | email              			| password          | result        |
       | henricoverdian@gmail.com    | Dewarico123@  	| success       |
-      | valid@gmail.com    			| WrongPassword     | wrong_pass    |
+      | henricoverdian@gmail.com    | WrongPassword     | wrong_pass    |
       |                    			|                   | empty_field   |
+      | henricoverdian$gmail.com    | Dewarico123@      | invalid_email |
+      | vocagame@gmail.com    		| vocagame@      	| not_registered|
+      | vocagame@gmail.com    		| vocagame@      	| locked		|
+      
+      
+      
+      
+      

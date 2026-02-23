@@ -45,11 +45,5 @@ import io.cucumber.java.en.When
 import pages.BasePage
 
 class DashboardPage extends BasePage {
-	
-	def verifyLoginSuccess() {
-		WebUI.verifyElementPresent(findTestObject('Dashboard/profile'), 20)
-		println "CURRENT URL: " + WebUI.getUrl()
-		println "PAGE TITLE: " + WebUI.getWindowTitle()
-		WebUI.takeScreenshot()
-	}
+
 }

@@ -49,12 +49,12 @@ import io.cucumber.java.After
 import pages.LoginPage
 import steps.Hooks
 import pages.BasePage
-import pages.DashboardPage
+import pages.LoginValidation
 
 class LoginFlow {
 	
 	LoginPage loginPage = new LoginPage()
-	DashboardPage dashboardPage = new DashboardPage()
+	LoginValidation loginValidation = new LoginValidation()
 
 	@Given("User open application")
 	def openApp() {
@@ -88,24 +88,34 @@ class LoginFlow {
 
 	@Then("Login result should be {string}")
 	def verifyResult(String result) {
-
-		switch(result) {
-
-			case "success":
-				dashboardPage.verifyLoginSuccess()
-				break
-
-			case "wrong_pass":
-				loginPage.verifyWrongPassword()
-				break
-
-			case "empty_field":
-				loginPage.verifyEmptyField()
-				break
-
-			default:
-				throw new Exception("Unknown expected result: " + result)
-		}
-	}
+    switch(result) {
+        case "success":
+            loginValidation.verifyLoginSuccess()
+            break
+        
+        case "wrong_pass":
+            loginValidation.verifyWrongPassword()
+            break
+        
+        case "empty_field":
+            loginValidation.verifyEmptyField()
+            break
+        
+        case "invalid_email":
+            loginValidation.verifyInvalidEmailFormat()
+            break
+        
+        case "not_registered":
+            loginValidation.verifyUserNotRegistered()
+            break
+        
+        case "locked":
+            loginValidation.verifyAccountLocked()
+            break
+        
+        default:
+            throw new Exception("⚠ Unknown expected result: " + result)
+    }
+}
  
 }

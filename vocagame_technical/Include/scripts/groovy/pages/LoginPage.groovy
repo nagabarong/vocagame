@@ -67,12 +67,4 @@ class LoginPage extends BasePage{
 	def clickSubmit() {
 		click(findTestObject('Login/button_Masuk Akun'))
 	}
-
-	def verifyWrongPassword() {
-		verifyVisible(findTestObject('Login/Validasi_Login_Pw'))
-	}
-
-	def verifyEmptyField() {
-		verifyVisible(findTestObject('Login/Validasi_email'))
-	}
 }
