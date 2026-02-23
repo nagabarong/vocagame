@@ -1,70 +1,44 @@
 package pages
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
-import com.kms.katalon.core.annotation.Keyword
-import com.kms.katalon.core.checkpoint.Checkpoint
-import com.kms.katalon.core.checkpoint.CheckpointFactory
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling
-import com.kms.katalon.core.testcase.TestCase
-import com.kms.katalon.core.testcase.TestCaseFactory
-import com.kms.katalon.core.testdata.TestData
-import com.kms.katalon.core.testdata.TestDataFactory
-import com.kms.katalon.core.testobject.ObjectRepository
 import com.kms.katalon.core.testobject.TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
-import internal.GlobalVariable
+class LoginPage extends BasePage {
 
-import org.openqa.selenium.WebElement
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.By
+    private TestObject getBtnLoginMenu() {
+        return findTestObject('Dashboard/button_Masuk')
+    }
 
-import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
-import com.kms.katalon.core.webui.driver.DriverFactory
+    private TestObject getFieldEmail() {
+        return findTestObject('Login/Form_field_noHP_Email')
+    }
 
-import com.kms.katalon.core.testobject.RequestObject
-import com.kms.katalon.core.testobject.ResponseObject
-import com.kms.katalon.core.testobject.ConditionType
-import com.kms.katalon.core.testobject.TestObjectProperty
+    private TestObject getBtnMasukAkun() {
+        return findTestObject('Login/button_masuk_akun')
+    }
 
-import com.kms.katalon.core.mobile.helper.MobileElementCommonHelper
-import com.kms.katalon.core.util.KeywordUtil
+    private TestObject getFieldPassword() {
+        return findTestObject('Login/input_show_password')
+    }
 
-import com.kms.katalon.core.webui.exception.WebElementNotFoundException
+    def clickLoginMenu() {
+        click(getBtnLoginMenu())
+    }
 
-import io.cucumber.java.en.And
-import io.cucumber.java.en.Given
-import io.cucumber.java.en.Then
-import io.cucumber.java.en.When
+    def inputEmail(String email) {
+        setText(getFieldEmail(), email)
+    }
 
+    def clickMasukAkun() {
+        click(getBtnMasukAkun())
+        waitReady(getFieldPassword())
+    }
 
-import pages.BasePage
+    def inputPassword(String password) {
+        setText(getFieldPassword(), password)
+    }
 
-class LoginPage extends BasePage{
-	
-	def clickLoginMenu() {
-		click(findTestObject('Dashboard/button_Masuk'))
-	}
-
-	def inputEmail(String email) {
-		setText(findTestObject('Login/Form_field_noHP_Email'), email)
-	}
-
-	def clickMasukAkun() {
-		click(findTestObject('Login/button_Masuk Akun'))
-		WebUI.waitForElementVisible(findTestObject('Login/input_show_password'), 10)
-	}
-
-	def inputPassword(String password) {
-		setText(findTestObject('Login/input_show_password'), password)
-	}
-
-	def clickSubmit() {
-		click(findTestObject('Login/button_Masuk Akun'))
-	}
+    def clickSubmit() {
+        click(getBtnMasukAkun())
+    }
 }

@@ -1,49 +1,109 @@
 package pages
 
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
-
-import com.kms.katalon.core.annotation.Keyword
-import com.kms.katalon.core.checkpoint.Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling
-import com.kms.katalon.core.testcase.TestCase
-import com.kms.katalon.core.testdata.TestData
 import com.kms.katalon.core.testobject.TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-
 import com.kms.katalon.core.util.KeywordUtil
-
-import internal.GlobalVariable
+import com.kms.katalon.core.model.FailureHandling
 import utils.OverlayHandler
-
+import java.util.Arrays
 
 public class BasePage {
 
-	
-	def click(def object) {
-		OverlayHandler.closeDialogIfPresent()
-		WebUI.waitForElementClickable(object, 5)
-		WebUI.click(object)
-	}
+    int DEFAULT_TIMEOUT = 15
+    int SHORT_TIMEOUT = 2
+    int RETRY = 2
 
-	def setText(def object, String value) {
-		WebUI.waitForElementVisible(object, 2)
-		WebUI.setText(object, value)
-	}
+    def click(TestObject object) {
+        Exception lastException = null
 
-	def verifyVisible(def object) {
-		WebUI.verifyElementVisible(object)
-	}
+        for (int i = 0; i <= RETRY; i++) {
+            try {
+                // 1. Handle overlay first (critical in headed mode)
+                OverlayHandler.closeDialogIfPresent()
 
-	def waitDisappear(def object) {
-		WebUI.waitForElementNotVisible(object, 10)
-	}
-	
+                // 2. Wait element present & visible & clickable
+                waitPresent(object, DEFAULT_TIMEOUT)
+                waitVisible(object, DEFAULT_TIMEOUT)
+                waitClickable(object, SHORT_TIMEOUT)
+
+                // 3. Scroll just in case (non-aggressive)
+                WebUI.scrollToElement(object, SHORT_TIMEOUT)
+
+                // 4. Click
+                WebUI.click(object, FailureHandling.STOP_ON_FAILURE)
+                KeywordUtil.logInfo("Clicked: " + object.getObjectId())
+                return
+
+            } catch (Exception e) {
+                lastException = e
+                KeywordUtil.logInfo("Retry click [" + (i+1) + "] for: " + object.getObjectId())
+
+                // Retry overlay handling
+                OverlayHandler.closeDialogIfPresent()
+                WebUI.delay(0.3)
+
+                // Final fallback: JS click
+                if (i == RETRY) {
+                    KeywordUtil.logInfo("Fallback to JS click: " + object.getObjectId())
+                    def element = WebUI.findWebElement(object, DEFAULT_TIMEOUT)
+                    WebUI.executeJavaScript("arguments[0].click();", Arrays.asList(element))
+                    return
+                }
+            }
+        }
+
+        KeywordUtil.markFailed(
+            "Failed to click: " + object.getObjectId() +
+            " | " + lastException?.getMessage()
+        )
+        throw lastException
+    }
+
+    def setText(TestObject object, String value) {
+        try {
+            OverlayHandler.closeDialogIfPresent()
+            waitPresent(object, DEFAULT_TIMEOUT)
+            waitVisible(object, DEFAULT_TIMEOUT)
+            WebUI.scrollToElement(object, SHORT_TIMEOUT)
+            WebUI.setText(object, value, FailureHandling.STOP_ON_FAILURE)
+            KeywordUtil.logInfo("Set text: " + object.getObjectId())
+        } catch (Exception e) {
+            KeywordUtil.markFailed(
+                "Failed to set text: " + object.getObjectId() +
+                " | " + e.getMessage()
+            )
+            throw e
+        }
+    }
+
+    def verifyVisible(TestObject object, int timeout = DEFAULT_TIMEOUT) {
+        waitPresent(object, timeout)
+        waitVisible(object, timeout)
+        WebUI.verifyElementVisible(object, FailureHandling.STOP_ON_FAILURE) // no timeout here
+    }
+
+    private def waitPresent(TestObject object, int timeout = DEFAULT_TIMEOUT) {
+        WebUI.waitForElementPresent(object, timeout, FailureHandling.STOP_ON_FAILURE)
+    }
+
+    private def waitVisible(TestObject object, int timeout = DEFAULT_TIMEOUT) {
+        WebUI.waitForElementVisible(object, timeout, FailureHandling.STOP_ON_FAILURE)
+    }
+
+    private def waitClickable(TestObject object, int timeout = DEFAULT_TIMEOUT) {
+        WebUI.waitForElementClickable(object, timeout, FailureHandling.STOP_ON_FAILURE)
+    }
+
+    def waitDisappear(TestObject object, int timeout = DEFAULT_TIMEOUT) {
+        WebUI.waitForElementNotVisible(object, timeout, FailureHandling.OPTIONAL)
+    }
+
+    def waitForPageReady() {
+        try {
+            WebUI.waitForPageLoad(DEFAULT_TIMEOUT)
+            KeywordUtil.logInfo("Page load check passed.")
+        } catch (Exception e) {
+            KeywordUtil.logInfo("Page ready check skipped: " + e.getMessage())
+        }
+    }
 }

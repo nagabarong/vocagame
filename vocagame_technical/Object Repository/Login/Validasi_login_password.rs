@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>Validasi_Login_Pw</name>
+   <name>Validasi_login_password</name>
    <tag></tag>
    <elementGuidId>1e45d42d-6c6c-4f26-9880-edfe1f03a5e4</elementGuidId>
    <selectorCollection>
@@ -11,7 +11,6 @@
       </entry>
       <entry>
          <key>CSS</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
